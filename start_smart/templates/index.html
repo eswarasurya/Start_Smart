@@ -1,15 +1,784 @@
-{% extends "base.html" %}
-{% block body_block %}
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/icon type">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div class="container">
-  <div class="jumbotron">
-    <h1>HOME PAGE</h1>
-    {% if user.is_authenticated %}
-        <h2>Welcome {{ user.username }}!</h2>
-    {% else %}
-        <h2>Welcome to the site!</h2>
-    {% endif %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+   
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" >
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<style>
+  .dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 200px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;}
+header{
+  overflow-y: hidden
+}
+*
+{
+  overflow-x : hidden;
+}
+
+.navbar {
+    transition: all 0.4s;
+}
+
+.navbar .nav-link {
+    color: #fff;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+}
+
+
+
+.navbar.active {
+    background: white;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.active .nav-link {
+    color: #555;
+}
+
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+    color: #555;
+    text-decoration: none;
+}
+
+.navbar.active .navbar-brand {
+    color: #555;
+}
+
+
+@media (max-width: 991.98px) {
+    .navbar {
+        background: #fff;
+    }
+
+    .navbar .navbar-brand, .navbar .nav-link {
+        color: #555;
+    }
+}
+
+
+.text-small {
+    font-size: 0.9rem !important;
+}
+
+
+body {
+
+    font-family: "Helvetica Neue",sans-serif;
+      font-weight: lighter;;
+
+}
+
+.bg-cover {
+    background-size: cover;
+   }
+
+.bg-center {
+    background-position: center center;
+}
+
+code {
+  background: #fff;
+  padding: 0.2rem;
+  border-radius: 0.1rem;
+  text-shadow: none;
+}
+
+.demo-text {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 1);
+}
+
+
+
+.overlay-dark {
+    position: relative;
+}
+
+.overlay-dark::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000;
+    display: block;
+    opacity: 0.55;
+    width:100%;
+    background-size:cover;
+}
+
+.overlay-content {
+    z-index: 99;
+    position: relative;
+   
+}
+
+#button-addon1 {
+  color: #ffc371;
+}
+
+i {
+  color: #ffc371;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.form-control.shadow-0:focus {
+  box-shadow: none;
+}
+html { font-size: 0.75rem; }
+
+@media (min-width: 576px) {
+    html { font-size: 0.75rem; }
+}
+@media (min-width: 768px) {
+    html { font-size: 1rem; }
+}
+@media (min-width: 992px) {
+    html { font-size: 1.10rem; }
+}
+@media (min-width: 1200px) {
+    html { font-size: 1.10rem; }
+}
+
+.custom-scrollbar-js,
+.custom-scrollbar-css {
+  height: 500px;
+}
+
+
+
+.custom-scrollbar-css {
+  overflow-y: scroll;
+}
+
+
+.custom-scrollbar-css::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #00d2ff;
+  background-image: linear-gradient(to top, #00d2ff 0%, #3a7bd5 100%);
+}
+
+
+.accordion-section .panel-default .panel-title a {
+    display: block;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+.accordion-section .panel-default .panel-title a:after {
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-size: 1rem;
+    content: "\f068";
+    color: #1f7de2;
+    float: right;
+    margin-top: -12px;
+}
+.accordion-section .panel-default .panel-title a.collapsed:after {
+    content: "\f067";
+}
+.accordion-section .panel-default .panel-body {
+    font-size: 1rem;
+}
+
+
+.carousel-indicators li {
+    border: none;
+    background: #ccc;
+}
+
+.carousel-indicators li.active {
+    background: #28a745;
+}
+header{
+    width: 100%;
+      height: 100vh;
+      background: url({% static 'land.jpg' %}) no-repeat 50% 50%;
+      background-size: cover;
+}
+
+.blink {
+  animation: blink 0.5s infinite;
+}
+
+.flex {
+  display: flex;
+}
+.header-sub-title {
+  color: #fff;
+  font-family: "Courier";
+  font-size: 40px;
+  padding: 0.3em;
+}
+
+p{
+ font-family: "Gentona ";
+}
+
+.mb_parallax_container {
+  height: 80vh;
+  width: 100vw;
+  
+  padding-top: 20vh;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mb_parallax_overlay {
+  height: 60vh;
+  width: 60vw;
+  margin: auto;
+  
+  opacity: .9;
+}
+
+#mb_parallax_one {
+  background-image: url({% static 'background.jpg' %});
+}
+
+</style>
+    <title>Start_smart</title>
+  </head>
+  <body>
+
+
+
+
+
+    <header >
+    <nav class="navbar navbar-expand-lg fixed-top py-3" >
+        <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold">StartSmart</a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link scroll-link" href="#one">Forum <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="#two">Finances</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="#three">Networking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="#four">Dashboard</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="{% url 'comment' %}">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
+
+                        <form id="logout" method="POST" action="{% url 'logout' %}">
+                          {% csrf_token %}
+  <input type="hidden">
+</form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="{% url 'signup' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scroll-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                    </li>
+                    
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="font-weight-bolder display-1 text-align-centre" style="padding-top:20vw;color:#F2F3F3">
   </div>
+  <div class="flex">
+  <p class="header-sub-title" id="word"></p><p class="header-sub-title blink">|</p>
+</div>
+</header>
+
+
+
+<script>
+      const words = ["WELCOME TO STARTSMART", "HELPS YOUR STARTUPS SUCCEED", ""];
+let i = 0;
+let timer;
+
+function typingEffect() {
+  let word = words[i].split("");
+  var loopTyping = function() {
+    if (word.length > 0) {
+      document.getElementById('word').innerHTML += word.shift();
+    } else {
+      deletingEffect();
+      return false;
+    };
+    timer = setTimeout(loopTyping, 270);
+  };
+  loopTyping();
+};
+
+function deletingEffect() {
+  let word = words[i].split("");
+  var loopDeleting = function() {
+    if (word.length > 0) {
+      word.pop();
+      document.getElementById('word').innerHTML = word.join("");
+    } 
+    else
+     {
+      if (words.length > (i + 1))
+       {
+        i++;
+      } 
+      else 
+      {
+        i = 0;
+      };
+
+      typingEffect();
+      return false;
+    };
+
+    timer = setTimeout(loopDeleting, 50);
+  };
+
+  loopDeleting();
+};
+
+
+typingEffect();
+    </script>
+
+
+<body style=" overflow-x: hidden; background: url({% static 'pattern2.png'%})">
+   <section style="margin-top:15px;" id="one"  >
+       <div class="overlay-dark bg-cover bg-center p-5 mb-5" style="background-image:url({% static 'a10.jpg'%}); width: 100% ;height:500px;   background-repeat: no-repeat;">
+                <div class="overlay-content text-white text-center "  style="padding-top:50px;" id="texts" >
+                   
+                     <p class="lead demo-text mb-1" data-aos="zoom-in"  data-aos-duration="1000">A medium where people with questions and problems can be</p>
+                    <p class="lead demo-text mb-1" data-aos="zoom-in"  data-aos-duration="2000"> directed to get answers and solutions.  A great way<br>  to share new ideas, get practical suggestions,</p>
+                    <p class="lead demo-text mb-4" data-aos="zoom-in"  data-aos-duration="3000">  apply shared insights and innovate through brainstorming. </p>
+                    
+                    <a class="btn btn-outline-light rounded-0 px-5" href="{% url 'forum' %}" data-aos="zoom-in"  data-aos-duration="4000" >Forum</a>
+                </div>
+            </div>
+</section>
+
+<section style="margin-top:-28px;" id="two"  >
+
+            <div class="overlay-dark bg-cover bg-center p-5 mb-5" style="background-image:url({% static 'a12.jpg'%}); width: 100%;height:500px;   background-repeat: no-repeat;">
+                <div class="overlay-content text-white text-center p-5" >
+                    
+                     <p class="lead demo-text mb-1" data-aos="zoom-in"  data-aos-duration="1000">In order to run a successful business,  you will need excellent </p>
+                    <p class="lead demo-text mb-1" data-aos="zoom-in"  data-aos-duration="2000"> knowledge in financial management.  We help you</p>
+                    <p class="lead demo-text mb-4" data-aos="zoom-in"  data-aos-duration="3000">  effortlessly manage your finances in one place. </p>
+                    <a class="btn btn-outline-light rounded-0 px-5" href="{% url 'finance' %}"  data-aos="zoom-in"  data-aos-duration="4000">Finances</a>
+                </div>
+            </div>
+</section>
+
+
+<section style="margin-top:-28px;" id="three"  >
+      <div class="overlay-dark bg-cover bg-center p-5 mb-5" style="background-image:url({% static 'a11.jpg'%}); width: 100%;height:500px;  background-repeat: no-repeat;">
+                <div class="overlay-content text-white text-center p-5" >
+                   
+                     <p class="lead demo-text mb-1" data-aos="zoom-in"  data-aos-duration="1000">Connecting with mentors for advice is now as easy as pie </p>
+                    <p class="lead demo-text mb-1" data-aos="zoom-in"  data-aos-duration="2000"> Additionally, an easy way for outsourcing<br> and connecting with incubators.   </p>
+                   
+                    <a class="btn btn-outline-light rounded-0 px-5" href="{% url 'mentor' %}" data-aos="zoom-in"  data-aos-duration="3000">Network</a>
+                </div>
+            </div>
+</section>
+
+<section style="margin-top:-28px;" id="four">
+      <div class="overlay-dark bg-cover bg-center p-5 mb-5" style="background-image:url({% static 'a21.jpg'%}); width: 100%;height:500px;  background-repeat: no-repeat;">
+                <div class="overlay-content text-white text-center p-5" >
+                   
+                     <p class="lead demo-text mb-1" data-aos="zoom-in"  data-aos-duration="1000">Dashboards provide critical reporting and metrics information and are </p>
+                    <p class="lead demo-text mb-1" data-aos="zoom-in"  data-aos-duration="2000"> integral in Business Performance Management. Find Dashboards of <br>various startups you are interested in. </p>
+                   
+                    <a class="btn btn-outline-light rounded-0 px-5" href="{% url 'dashboard' %}" data-aos="zoom-in"  data-aos-duration="3000">Dashboard</a>
+                </div>
+            </div>
+</section>
+
+
+
+<div style="background: url({% static 'pattern1.png'%})">
+<div class="container" style="margin-top:-45px;" >
+  <div class="py-5">
+    <h3 class="font-weight-bold mb-0"style="margin-top:1vw;">STARTSMART'S</h3>
+    <p class="font-italic text-muted mb-4">Smart Start Guide</p>
+    <div class="row">
+      
+      <div class="col-lg-4 mb-3 mb-lg-0" >
+        <div class="hover hover-3 text-white rounded"><img src="{% static 'a13.jpg' %}" alt="">
+          <div class="hover-overlay"></div>
+          <div class="hover-3-content px-5 py-4">
+            <h3 class="hover-3-title text-uppercase font-weight-bold mb-1"><span class="font-weight-light">Step 1 </span></h3>
+            <p class="hover-3-description small text-uppercase mb-0">Register <br>Here</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 mb-3 mb-lg-0" >
+        <div class="hover hover-3 text-white rounded"><img src="{% static 'a14.jpg' %}" alt="">
+          <div class="hover-overlay"></div>
+          <div class="hover-3-content px-5 py-4">
+            <h3 class="hover-3-title text-uppercase font-weight-bold mb-1"><span class="font-weight-light">Step 2 </span></h3>
+            <p class="hover-3-description small text-uppercase mb-0">Innovative <br>Ideas</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-3 mb-lg-0 " >
+        <div class="hover hover-3 text-white rounded"><img src="{% static 'a15.jpg' %}" alt="">
+          <div class="hover-overlay"></div>
+          <div class="hover-3-content px-5 py-4">
+            <h3 class="hover-3-title text-uppercase font-weight-bold mb-1"><span class="font-weight-light">Step 3</span></h3>
+            <p class="hover-3-description small text-uppercase mb-0">Connect with <br>Mentors,Co-orperates,Incubators</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+<div style="background: url({% static 'a18.png' %}) ">
+  <br><br>
+<h3 style="text-align: center" data-aos="zoom-in"  data-aos-duration="2000">Our Testimonals</h3>
+<section class="pb-5">
+    <div class="container" >
+        <div class="row">
+            <div class="col-lg-10 col-xl-8 mx-auto">
+                <div class="p-5 bg-white shadow rounded">
+                    
+                    <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel" data-interval="2000">
+                       
+                        <ol class="carousel-indicators mb-0">
+                            <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+
+
+                        
+                        <div class="carousel-inner px-5 pb-4">
+                            
+                            <div class="carousel-item active">
+                                <div class="media"><img class="rounded-circle img-thumbnail" src="{% static 'p6.jpg'%}" alt="" width="75">
+                                    <div class="media-body ml-3">
+                                        <blockquote class="blockquote border-0 p-0">
+                                            <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 text-success"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna .&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-quote-right mr-3 text-success"></i></p>
+                                            <footer class="blockquote-footer">Someone famous in
+                                                <cite title="Source Title">Source Title</cite>
+                                            </footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Carousel slide-->
+                            <div class="carousel-item">
+                                <div class="media"><img class="rounded-circle img-thumbnail" src="{% static 'p1.webp' %}" alt="" width="75">
+                                    <div class="media-body ml-3">
+                                           <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 text-success"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna .&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-quote-right mr-3 text-success"></i></p>
+                                            <footer class="blockquote-footer">Someone famous in
+                                                <cite title="Source Title">Source Title</cite>
+                                            </footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="carousel-item">
+                                <div class="media"><img class="rounded-circle img-thumbnail" src="{% static 'p3.jpg' %}" alt="" width="75">
+                                    <div class="media-body ml-3">
+                                        <blockquote class="blockquote border-0 p-0">
+                                               <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 text-success"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna .&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-quote-right mr-3 text-success"></i></p>
+                                            <footer class="blockquote-footer">Someone famous in
+                                                <cite title="Source Title">Source Title</cite>
+                                            </footer>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                     
+                        <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <i class="fa fa-angle-left text-dark text-lg"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next width-auto" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <i class="fa fa-angle-right text-dark text-lg"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </div>
 
-{% endblock %}
+ 
+
+<div style="background: url({% static 'a20.jpg' %})">
+                <div class="container">
+<div data-aos="zoom-in" data-aos-duration="1000" >
+  <br><br>
+<h2 style="text-align: center;">FAQ'S</h2>
+<h6 style="text-align: center; columns: lightgray;">address all your startup related queries here.</h6>
+</div>
+<div class="row py-5" >
+    <div class="col-lg-8 mx-auto" >
+
+      <div class="card mb-4"  style="height:400px;">
+
+
+        <div class="custom-scrollbar-css p-2">
+          <section class="accordion-section clearfix mt-3" aria-label="Question Accordions" >
+              <div class="container" >
+
+
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                  <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
+                    <h6 class="panel-title">
+                    <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                      What are the components completed?
+                    </a>
+                    </h6>
+                  </div>
+                  <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                    <div class="panel-body px-3 mb-4">
+                    <p>We have completed:</p>
+                    <ul>
+                      <li>Home page</li>
+                      <li>forum</li>
+                      <li>User AAuthentication</li>
+                      <li>User Profile</li>
+                      <li>Front end part of finances and Dashboard</li>
+                    </ul>
+                    </div>
+                  </div>
+                  </div>
+
+                  <hr>
+                  <div class="panel panel-default">
+                  <div class="panel-heading p-3 mb-3" role="tab" id="heading1">
+                    <h6 class="panel-title">
+                    <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                      How was startsmart started?
+                    </a>
+                    </h6>
+                  </div>
+                  <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                    <div class="panel-body px-3 mb-4">
+                    <p>Our Awesome team brainstormed this Idea for Ase Project</p>
+                    </div>
+                  </div>
+                  </div>
+
+                  <hr>
+                  <div class="panel panel-default">
+                  <div class="panel-heading p-3 mb-3" role="tab" id="heading2">
+                    <h6 class="panel-title">
+                    <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                      What does startsmart do?
+                    </a>
+                    </h6>
+                  </div>
+                  <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                    <div class="panel-body px-3 mb-4">
+                    <p>StartSmart provides a personalised experience by managing your finances,connecting you to other startups,Mentors,Corporates.It also provides you a medium to outsource your product components and check the progress of other startups.</p>
+                    </div>
+                  </div>
+                  </div>
+                  <hr>
+                  <div class="panel panel-default">
+                  <div class="panel-heading p-3 mb-3" role="tab" id="heading3">
+                    <h6 class="panel-title">
+                    <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                      Is Starsmart Free??
+                    </a>
+                    </h6>
+                  </div>
+                  <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                    <div class="panel-body px-3 mb-4">
+                    <p><h1>ABSOLUTELY</h1></p>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              <hr>
+               <div class="panel panel-default">
+                  <div class="panel-heading p-3 mb-3" role="tab" id="heading0">
+                    <h6 class="panel-title">
+                    <a class="collapsed" role="button" title="" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                      What are the benefits of StartSmart?
+                    </a>
+                    </h6>
+                  </div>
+                  <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                    <div class="panel-body px-3 mb-4">
+                    <p>StartSmart provides a personalised experience by managing your finances,connecting you to other startups,Mentors,Corporates.It also provides you a medium to outsource your product components and check the progress of other startups.</p>
+                    </div>
+                  </div>
+                  </div>
+
+                  <hr>
+              </div>
+              </section>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+          </body>
+  <!-- Footer -->
+  <footer  style="
+  background: linear-gradient(to bottom right ,#19181A ,#2F4454 );
+">
+    <div class="container py-5">
+      <div class="row py-4">
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="img/logo.png" alt="" width="180" class="mb-3">
+          <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+          <ul class="list-inline mt-4">
+            <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
+            <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
+            <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase font-weight-bold mb-4" style="color:yellowgreen">Website</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="#" class="text-muted">For Startups</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">For Corporates</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">For Individuals</a></li>
+            <li class="mb-2"><a href="{% url 'allblogs' %}" class="text-muted">Our Blog</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase font-weight-bold mb-4" style="color:yellowgreen">Company</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="{% url 'login' %}" class="text-muted">Login</a></li>
+            <li class="mb-2"><a href="{% url 'signup' %}" class="text-muted">Register</a></li>
+            <li class="mb-2"><a href="{% url 'aboutus' %}" class="text-muted">About</a></li>
+            <li class="mb-2"><a href="#" class="text-muted">Our Team</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase font-weight-bold mb-4" style="color:yellowgreen">Survey</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><p class="text-muted">Please give 5 minutes to give survey</p></li>
+           <a  href="{% url 'home' %}"><button type="button" class="btn btn-outline-warning">Click Here</button></a>
+           
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Copyrights -->
+    <div >
+      <div class="container text-center">
+        <p class="text-muted mb-0 py-2">© 2019 StartSmart All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- End -->
+    <script>
+        $(function () {
+    $(window).on('scroll', function () {
+        if ( $(window).scrollTop() > 10 ) {
+            $('.navbar').addClass('active');
+        } else {
+            $('.navbar').removeClass('active');
+        }
+    });
+});
+
+    </script>
+
+  </body>
+</html>
+<!---
+
+-->
